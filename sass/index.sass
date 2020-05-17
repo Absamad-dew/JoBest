@@ -1,3 +1,6 @@
+$black: #000000
+
+
 a
     text-decoration: none
     color: #000000
@@ -14,9 +17,13 @@ body
     background: #F0F0F0
     height: 75px
     align-items: center
+    cursor: pointer
     &-button
         background-color: none
         border: none
+        &:active
+            color: lighten($black,50% )
+           
     &-row
         height: 75px
     
@@ -361,6 +368,8 @@ input[type=range]::-ms-thumb
 .row
     margin: 0
     padding: 0
+.visible
+    display: block
 @media screen and (max-device-width: 1280px)
   .authorization-visible
     width: 100%

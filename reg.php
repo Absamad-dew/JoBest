@@ -3,9 +3,8 @@ require_once 'php/connection.php';
 $link = mysqli_connect($host,$user,$password,$database)
    or die("Ошибка ". mysqli_error($link));
    $result = mysqli_query($link, "SELECT * FROM vacancy");
-
-
-?> 
+   $test_result = mysqli_query($link, "SELECT * FROM people");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +19,11 @@ $link = mysqli_connect($host,$user,$password,$database)
 <body>
 <div class="container row">
 <div class="authorization-visible" id="authorization">
-    <form action="php/authorization.php" method="POST" class="authorization">
+    <form action="" method="POST" class="authorization">
     <div class="row">
         <div class="authorization-title col-lg-12">Войти</div>
-        <input type="text" class="col-lg-12" placeholder="Эл. адресс" name="Name">
-        <input type="password" class="col-lg-12" placeholder="Пароль" name="Password">
+        <input type="text" class="col-lg-12" placeholder="Эл. адресс" name="adress">
+        <input type="password" class="col-lg-12" placeholder="Пароль" name="password">
         </div>
         <input type="submit" class="authorization-input-submit" value="Далее">
     </form>
@@ -49,11 +48,11 @@ $link = mysqli_connect($host,$user,$password,$database)
             <div class="col-lg-3 logo">
                     JoBest
                 </div>
+                <div class="col-lg-2 header-categories">Здраствуйте <?php $_POST['Name'] ?></div>
                 <div class="col-lg-2 header-categories">Соискателям</div>
-                <div class="col-lg-2 header-categories">Работодателям</div>
                 <div class="col-lg-2 header-categories">Hr журнал</div>
                 <div class="col-lg-1"></div>
-                <button onclick="log_in()"  class="col-lg-2 header-categories header-button">Вход на сайт</button>
+                <button onclick="log_in()"  class="col-lg-2 header-categories header-button">Добавить вакансию</button>
             </div>
         </div>
     </div>
