@@ -52,7 +52,7 @@ $link = mysqli_connect($host,$user,$password,$database)
                 <div class="col-lg-2 header-categories">Соискателям</div>
                 <div class="col-lg-2 header-categories">Hr журнал</div>
                 <div class="col-lg-1"></div>
-                <button onclick="log_in()"  class="col-lg-2 header-categories header-button">Добавить вакансию</button>
+                <a href="php/posts.php" class="col-lg-2 header-categories header-button">Добавить вакансию</a>
             </div>
         </div>
     </div>
