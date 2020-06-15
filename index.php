@@ -23,7 +23,7 @@ $link = mysqli_connect($host,$user,$password,$database)
     <form action="php/authorization.php" method="POST" class="authorization">
     <div class="row">
         <div class="authorization-title col-lg-12">Войти</div>
-        <input type="text" class="col-lg-12" placeholder="Эл. адресс" name="Name">
+        <input type="text" class="col-lg-12" placeholder="Логин" name="Login">
         <input type="password" class="col-lg-12" placeholder="Пароль" name="Password">
         </div>
         <input type="submit" class="authorization-input-submit" value="Далее">
@@ -37,6 +37,7 @@ $link = mysqli_connect($host,$user,$password,$database)
         <input type="text" class="authorization-input-right " placeholder="Фамилия" name="Surname">
         </div>
         </div>
+        <input type="text" class="col-lg-12" placeholder="Логин" name="Login">
         <input type="password" class="col-lg-12" placeholder="Новый пароль" name="Password">
         </div>
         <input type="submit" class="authorization-input-submit" value="Далее">

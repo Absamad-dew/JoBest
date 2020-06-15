@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'php/connection.php';
 $link = mysqli_connect($host,$user,$password,$database)
    or die("Ошибка ". mysqli_error($link));
@@ -48,7 +49,7 @@ $link = mysqli_connect($host,$user,$password,$database)
             <div class="col-lg-3 logo">
                     JoBest
                 </div>
-                <div class="col-lg-2 header-categories">Здраствуйте <?php $_POST['Name'] ?></div>
+                <div class="col-lg-2 header-categories">Здраствуйте <?php echo $_SESSION['login']  ?></div>
                 <div class="col-lg-2 header-categories">Соискателям</div>
                 <div class="col-lg-2 header-categories">Hr журнал</div>
                 <div class="col-lg-1"></div>
