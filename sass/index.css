@@ -1,3 +1,13 @@
+button {
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  align-self: center;
+}
+
 a {
   text-decoration: none;
   color: #000000;
@@ -469,7 +479,29 @@ input[type=range]::-ms-thumb {
 }
 
 .visible {
+  visibility: visible;
   display: block;
+}
+
+.no_visible {
+  visibility: visible;
+}
+
+.balance {
+  position: absolute;
+  visibility: hidden;
+  z-index: 2;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  cursor: pointer;
+}
+
+.balance:hover {
+  color: #333333;
 }
 
 @media screen and (max-device-width: 1280px) {

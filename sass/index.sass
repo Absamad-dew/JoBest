@@ -1,5 +1,13 @@
 $black: #000000
 
+button
+    border: none
+    font-family: Roboto
+    font-style: normal
+    font-weight: 700
+    font-size: 16px
+    line-height: 19px
+    align-self: center
 
 a
     text-decoration: none
@@ -369,7 +377,24 @@ input[type=range]::-ms-thumb
     margin: 0
     padding: 0
 .visible
+    visibility: visible
     display: block
+.no_visible
+    visibility: visible
+.balance
+    position: absolute
+    visibility: hidden
+    z-index: 2
+    align-items: center
+    margin-top: 20px
+    padding: 10px
+    // visibility: hidden
+    display: flex
+    flex-direction: column
+    width: 100px
+    cursor: pointer
+    &:hover
+        color: lighten($black,20% )
 @media screen and (max-device-width: 1280px)
   .authorization-visible
     width: 100%
