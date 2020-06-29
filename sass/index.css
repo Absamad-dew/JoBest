@@ -120,6 +120,20 @@ body {
   margin-bottom: 20px;
 }
 
+.main-vacancy-actions_input {
+  margin: 10px;
+  width: 100%;
+  height: 90px;
+  background: rgba(196, 196, 196, 0.5);
+  border-radius: 5px;
+  padding: 8px;
+  border: none;
+  text-align: start;
+  margin-left: 0px;
+  margin-top: 0px;
+  font-size: 16px;
+}
+
 .main-vacancy-actions-item {
   background: rgba(196, 196, 196, 0.5);
   border-radius: 16px;
@@ -127,6 +141,7 @@ body {
   border: none;
   margin-left: 15px;
   text-align: center;
+  font-size: 16px;
 }
 
 .main-grey-vacancy {
@@ -136,6 +151,12 @@ body {
   box-sizing: border-box;
   border-radius: 15px;
   margin-top: 20px;
+}
+
+.main-grey-vacancy input {
+  outline: none;
+  border: none;
+  will-change: none;
 }
 
 .main-icon-people {
@@ -445,10 +466,10 @@ input[type=range]::-ms-thumb {
   transition: 1s;
   transform: 1s;
   z-index: 10;
-  width: 40%;
+  width: 25%;
   height: 32%;
   justify-content: center;
-  left: 30%;
+  left: 37.5%;
   top: 35%;
   padding: 10px;
   background-color: #fff;
@@ -492,21 +513,35 @@ input[type=range]::-ms-thumb {
   visibility: hidden;
   z-index: 2;
   align-items: center;
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 25px;
+  padding: 25px;
+  padding-top: 15px;
+  margin-left: -70px;
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: min-content;
   cursor: pointer;
+  background: #e6e6e6;
 }
 
 .balance:hover {
   color: #333333;
 }
 
+.balance_price {
+  background: none;
+  margin: 10px;
+}
+
+.no_visible {
+  visibility: hidden;
+  position: absolute;
+}
+
 @media screen and (max-device-width: 1280px) {
   .authorization-visible {
     width: 100%;
+    background: #000;
     left: 0;
     background: none;
   }

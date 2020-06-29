@@ -11,6 +11,8 @@ $name_company = htmlentities(mysqli_real_escape_string($link, $_POST['Name_compa
 $adress = htmlentities(mysqli_real_escape_string($link, $_POST['Adress']));
 $email = htmlentities(mysqli_real_escape_string($link, $_POST['Email']));
 
-echo " $position,$salary_from,$salary_up_to,$descripton,$name_company,$adress";
-$result = mysqli_query($link, "INSERT INTO vacancy ( Title, Start, End, Description, Name, Location ) VALUES ($position,$salary_from,$salary_up_to,$descripton,$name_company,$adress)");
+$result = mysqli_query($link, "INSERT INTO `vacancy` ( `Title`, `Start`, `End`, `Description`, `Name`, `Location`, `email` ) VALUES ('$position', '$salary_from', '$salary_up_to', '$descripton', '$name_company', '$adress', '$email')");
+
 ?>
+<?php
+        header("location:../reg.php");

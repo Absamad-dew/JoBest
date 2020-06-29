@@ -1,11 +1,17 @@
 <?php
 session_start();
-require_once 'php/connection.php';
+require_once 'connection.php';
 $link = mysqli_connect($host, $user, $password, $database)
     or die("Ошибка " . mysqli_error($link));
-$result = mysqli_query($link, "SELECT * FROM vacancy");
+$id =  mysqli_real_escape_string($link,$_POST['id'] );
+$login = $_SESSION['login'];
+$test = "SELECT * FROM people WHERE Login = '$login'";
+$points = $_SESSION['points'] - 1;
+$result = mysqli_query($link, "UPDATE `people` SET `Points` = '$points' WHERE `people`.`Login` = '$login'"); 
+$result = mysqli_query($link, "SELECT * FROM vacancy WHERE `id` = '$id'");
 $test_result = mysqli_query($link, "SELECT * FROM people");
 //    echo $_SESSION['points'],$_SESSION['password'],$_SESSION['login'],$_SESSION['points'];
+$_SESSION['points'] = $points;
 ?>
 
 <!DOCTYPE html>
@@ -15,45 +21,21 @@ $test_result = mysqli_query($link, "SELECT * FROM people");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/grid.min.css">
-    <link rel="stylesheet" href="sass/index.min.css">
+    <link rel="stylesheet" href="../css/grid.min.css">
+    <link rel="stylesheet" href="../sass/index.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="container row">
-
-        <div class="authorization-visible" id="authorization">
-            <form action="" method="POST" class="authorization">
-                <div class="row">
-                    <div class="authorization-title col-lg-12">Войти</div>
-                    <input type="text" class="col-lg-12" placeholder="Эл. адресс" name="adress">
-                    <input type="password" class="col-lg-12" placeholder="Пароль" name="password">
-                </div>
-                <input type="submit" class="authorization-input-submit" value="Далее">
-            </form>
-            <form action="php/registration.php" method="POST" class="authorization">
-                <div class="row">
-                    <div class="authorization-title col-lg-12">Регистрация</div>
-                    <div class="col-lg-12 row">
-                        <div class=" authorization-width col-lg-12 flex">
-                            <input type="text" class="authorization-input-left " placeholder="Имя" name="Name">
-                            <input type="text" class="authorization-input-right " placeholder="Фамилия" name="Surname">
-                        </div>
-                    </div>
-                    <input type="password" class="col-lg-12" placeholder="Новый пароль" name="Password">
-                </div>
-                <input type="submit" class="authorization-input-submit" value="Далее">
-            </form>
-        </div>
     </div>
     <div class="header">
         <div class="container">
             <div class="row header-row">
-                <div class="col-lg-3 logo">
+                <a href="../reg.php" class="col-lg-3 logo">
                     JoBest
-                </div>
+</a>
                 <div class="col-lg-3 header-categories">Здраствуйте <?php echo $_SESSION['login']  ?></div>
                 <div class="col-lg-2 header-categories"> Баланс- <?php echo $_SESSION['points'] ?></div>
                 <div href="#" class="col-lg-2 header-categories"><button onclick="replenish()">Пополнить</button>
@@ -61,7 +43,8 @@ $test_result = mysqli_query($link, "SELECT * FROM people");
                         <a href="php/10points.php" class="balance_price">
                             5 point
 </a>
-<iframe src="https://money.yandex.ru/quickpay/button-widget?targets=5%20points&default-sum=5&button-text=12&any-card-payment-type=on&button-size=m&button-color=black&successURL=https%3A%2F%2Fjobest%2Fphp%2F10points.php&quickpay=small&account=4100115015280290&" width="184" height="36" frameborder="0" allowtransparency="true" scrolling="no"></iframe>                        <button class="balance_price">
+                        <iframe src="https://money.yandex.ru/quickpay/button-widget?targets=10%20points&default-sum=10&button-text=12&any-card-payment-type=on&button-size=m&button-color=black&successURL=http%3A%2F%2Fjobest%2Fphp%2F10points.php&quickpay=small&account=4100115015280290&" width="184" height="36" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+                        <button class="balance_price">
                             10 points
                         </button>
                         <iframe src="https://money.yandex.ru/quickpay/button-widget?targets=10%20points&default-sum=10&button-text=12&any-card-payment-type=on&button-size=m&button-color=black&successURL=http%3A%2F%2Fjobest%2Fphp%2F10points.php&quickpay=small&account=4100115015280290&" width="184" height="36" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
@@ -127,82 +110,24 @@ $test_result = mysqli_query($link, "SELECT * FROM people");
         <div class="main-container container">
             <div class="row">
                 <div class="col-lg-9">
-                    <div class="day-vacancy">
-                        <div class="day-vacancy-pink">
-                            <div class="main-icon">
-                                <div class="main-container-icon"></div>
-                            </div>
-                            <div class="day-vacancy-title">Вакансия дня</div>
-                        </div>
-                    </div>
-                    <!-- end pink -->
-                    <div class="main-vacancy">
-                        <div class="main-vacancy-title">Веб-разработчик</div>
-                        <div class="main-vacancy-subtitle">От 45000р до 150000р за месяц</div>
-                        <div class="main-vacancy-description">MegaLid - Успешно развивающаяся компания.Основное направление
-                            разработка и продвижение сервисов кредитования, интернет реклама.
-                            Приглашаем на работу Web - разработчика на проект по созданию
-                            ( сервиса по подбору кредитов и займов )</div>
-                        <div class="row">
-                            <div class="col-lg-3 check">
-                                <div class="main-vacancy-check flex">
-                                    <div class="main-vacancy-check-description">Опыт от года</div>
-                                    <input type="checkbox">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 check">
-                                <div class="main-vacancy-check flex">
-                                    <div class="main-vacancy-check-description">Java Script</div>
-                                    <input type="checkbox">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 check">
-                                <div class="main-vacancy-check flex">
-                                    <div class="main-vacancy-check-description">Less, Sass</div>
-                                    <input type="checkbox">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 check">
-                                <div class="main-vacancy-check flex">
-                                    <div class="main-vacancy-check-description">React</div>
-                                    <input type="checkbox">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row -->
-                        <div class="row">
-                            <div class="col-lg-3 main-vacancy-conditions">Неполный день</div>
-                            <div class="col-lg-3 main-vacancy-conditions">Удаленная работа</div>
-                        </div>
-                        <div class="main-vacancy-location-title">World Nails</div>
-                        <div class="main-vacancy-location-subtitle">г. Москва, Планетная улица </div>
-                        <div class="main-vacancy-actions">
-                            <div class="row">
-                                <button class="col-lg-4 main-vacancy-actions-item">Откликнуться</button>
-                                <button class="col-lg-4 main-vacancy-actions-item">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
                     <?php
                     if ($result) {
                         $rows = mysqli_num_rows($result);
                         for ($i = 0; $i < $rows; ++$i) {
                             $row = mysqli_fetch_row($result);
-                            echo "<form action=\"php/view_post.php\" method=\"POST\" class=\"main-grey-vacancy\">
+                            echo "<form class=\"main-grey-vacancy\">
                                <div class=\"main-vacancy-title\">$row[1]</div>
-                               <input value=\"$row[0]\" name=\"id\" class=\"main-vacancy-title no_visible\">
                                <div class=\"main-vacancy-subtitle\">От $row[2]р до $row[3]р за месяц</div>
                                <div class=\"main-vacancy-description\">$row[4]</div>
                                <!-- row -->
                                <div class=\"main-vacancy-location-title\">$row[7]</div>
                                <div class=\"main-vacancy-location-subtitle\">$row[8]</div>
+                               <div class=\"main-vacancy-location-subtitle\">$row[12]</div>
+                               <div class=\"main-vacancy-location-subtitle\">$row[13]</div>
+                               <input type=\"text\" placeholder=\"Введите свое собщение\" class=\"main-vacancy-actions_input\" name=\"message\">
                                <div class=\"main-vacancy-actions\">
                                <div class=\"row\">
-                                   <input type=\"submit\" placeholder=\"Откликнуться\" class=\"col-lg-4 main-vacancy-actions-item\">
-                                   <a href=\"$row[10]\" class=\"col-lg-4 main-vacancy-actions-item\">Подробнее</a>
+                                   <a href=\"../reg.php\" class=\"col-lg-4 main-vacancy-actions-item\">Отправить сообщение</a>
                                </div>
                            </div>
                            </form>";
