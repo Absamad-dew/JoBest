@@ -7,8 +7,7 @@ $id =  mysqli_real_escape_string($link,$_POST['id'] );
 $login = $_SESSION['login'];
 $test = "SELECT * FROM people WHERE Login = '$login'";
 $points = $_SESSION['points'] - 1;
-$new_result = mysqli_query($link, "UPDATE `people` SET `Points` = '$points' WHERE `people`.`Login` = '$login'"); 
-$result = mysqli_query($link, "SELECT * FROM vacancy WHERE `id` = '$id'");
+$result = mysqli_query($link, "SELECT * FROM response WHERE `login` = '$login'");
 $test_result = mysqli_query($link, "SELECT * FROM people");
 //    echo $_SESSION['points'],$_SESSION['password'],$_SESSION['login'],$_SESSION['points'];
 $_SESSION['points'] = $points;
@@ -115,21 +114,22 @@ $_SESSION['points'] = $points;
                         $rows = mysqli_num_rows($result);
                         for ($i = 0; $i < $rows; ++$i) {
                             $row = mysqli_fetch_row($result);
-                            echo "<form method=\"POST\" action=\"new_response.php\" class=\"main-grey-vacancy\">
-                               <div class=\"main-vacancy-title\">$row[1]</div>
-                               <div class=\"main-vacancy-subtitle\">От $row[2]р до $row[3]р за месяц</div>
+                            echo "<form class=\"main-grey-vacancy\">
+                            <div class=\"main-vacancy-title\">От  $row[3]</div>
+                               <div class=\"main-vacancy-description\">$row[1]</div>
+                               <div class=\"main-vacancy-subtitle\">Email $row[2]</div>
+                               
+
                                <div class=\"main-vacancy-description\">$row[4]</div>
                                <!-- row -->
                                <div class=\"main-vacancy-location-title\">$row[7]</div>
                                <div class=\"main-vacancy-location-subtitle\">$row[8]</div>
                                <div class=\"main-vacancy-location-subtitle\">$row[12]</div>
                                <div class=\"main-vacancy-location-subtitle\">$row[13]</div>
-                               <input type=\"text\" placeholder=\"Введите свой email\" class=\"main-vacancy-actions_input\" name=\"email\">
                                <input type=\"text\" placeholder=\"Введите свое собщение\" class=\"main-vacancy-actions_input\" name=\"message\">
-                               <input type=\"text\" class=\"no_visible\" value=\"$row[14]\" name=\"login_vacancy\">
                                <div class=\"main-vacancy-actions\">
                                <div class=\"row\">
-                                   <input type=\"submit\" class=\"col-lg-4 main-vacancy-actions-item\" placeholder=\"Отправить сообщение\">
+                                   <a href=\"../reg.php\" class=\"col-lg-4 main-vacancy-actions-item\">Ответить</a>
                                </div>
                            </div>
                            </form>";
@@ -140,47 +140,7 @@ $_SESSION['points'] = $points;
                 </div>
                 <!-- sidebar -->
                 <!-- <div class="col-lg-1"></div> -->
-                <div class="col-lg-3 sidebar">
-                    <div class="sidebar-title">Район для поиска</div>
-                    <input type="text" value="Москва" class="sidebar-citi-input">
-                    <div class="flex">
-                        <div class="">Ищу не далее </div>
-                        <div class=" sidebar-zp ">15км</div>
-                    </div>
-                    <input type="range" name="" id="">
-                    <div class="sidebar-text-item">Категория</div>
-                    <input type="text" value="Выберите категорию" class="sidebar-citi-input">
-                    <div class="flex">
-                        <div class="">Зарплата от </div>
-                        <div class=" sidebar-zp ">Не важно</div>
-                    </div>
-                    <div class="sidebar-time">
-                        <input type="radio" name="time" id="">
-                        <input type="radio" name="time" id="">
-                        <input type="radio" name="time" id="">
-                    </div>
-                    <div class="sidebar-text-item">Удаленная работа</div>
-                    <input type="text" value="Выберите вид работы" class="sidebar-citi-input">
-                    <div class="sidebar-text-item">График</div>
-                    <div class="row">
-                        <input type="checkbox" class="col-lg-2 sidebar-checkbox" name="" id="">
-                        <div class="sidebar-checkbox-text">Неполный рабочий день</div>
-                    </div>
-                    <div class="row">
-                        <input type="checkbox" class="col-lg-2 sidebar-checkbox" name="" id="">
-                        <div class="sidebar-checkbox-text">Вахтовый метод</div>
-                    </div>
-                    <div class="sidebar-text-item">Условия работы</div>
-                    <div class="row">
-                        <input type="checkbox" class="col-lg-2 sidebar-checkbox" name="" id="">
-                        <div class="sidebar-checkbox-text">Без опыта</div>
-                    </div>
-                    <div class="row">
-                        <input type="checkbox" class="col-lg-2 sidebar-checkbox" name="" id="">
-                        <div class="sidebar-checkbox-text">Можно до 18</div>
-                    </div>
 
-                </div>
             </div>
         </div>
     </main>

@@ -12,7 +12,8 @@ $test_result = mysqli_query($link, "SELECT * FROM people");
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/grid.min.css">
@@ -51,10 +52,10 @@ $test_result = mysqli_query($link, "SELECT * FROM people");
     <div class="header">
         <div class="container">
             <div class="row header-row">
-                <div class="col-lg-3 logo">
+                <div class="col-lg-4 logo">
                     JoBest
                 </div>
-                <div class="col-lg-3 header-categories">Здраствуйте <?php echo $_SESSION['login']  ?></div>
+                <div class="col-lg-2 header-categories"> <a href="php/view_response.php"> Отклики</a> </div>
                 <div class="col-lg-2 header-categories"> Баланс- <?php echo $_SESSION['points'] ?></div>
                 <div href="#" class="col-lg-2 header-categories"><button onclick="replenish()">Пополнить</button>
                     <div id="balance" class="balance ">
@@ -82,12 +83,12 @@ $test_result = mysqli_query($link, "SELECT * FROM people");
             <div class="row">
                 <div class="main-search align-middle col-lg-12">
                     <div class="row align-middle">
-                        <div class="col-lg-2  flex">
+                        <form  action="php/search.php" method="POST" class="col-lg-2  flex">
                             <div class="main-icon">
-                                <div class="main-icon-search"> </div>
+                                <input type="submit" class="main-icon-search"> 
                             </div>
-                            <input type="text" value="Поиск работы" class="main-input">
-                        </div>
+                            <input  type="text" name="search" value="Поиск работы" class="main-input">
+                        </form>
                         <div class="col-lg-1"></div>
                         <div class="col-lg-2 main-search-text">в Москве</div>
                         <div class="col-lg-3"></div>

@@ -22,6 +22,9 @@ $link = mysqli_connect($host,$user,$password,$database)
     if($testing) {
         header("location:../reg.php");
     } else {
+         $_SESSION['login'] = '';
+        header("location:../index.php");
+       
         die('Не правильно введен логин или пароль, попробуйте еще раз ');
     }
     

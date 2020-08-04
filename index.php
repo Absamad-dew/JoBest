@@ -1,8 +1,13 @@
 <?php
+session_start();
 require_once 'php/connection.php';
 $link = mysqli_connect($host,$user,$password,$database)
    or die("Ошибка ". mysqli_error($link));
    $result = mysqli_query($link, "SELECT * FROM vacancy");
+   $login = $_SESSION['login'];
+   if( $login){
+       header("location:reg.php");
+   }
 
 
 ?> 
